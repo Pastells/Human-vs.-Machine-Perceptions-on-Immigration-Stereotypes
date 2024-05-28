@@ -83,16 +83,10 @@ and we will provide the zip password.
 ## Results
 
 Predictions for each model are stored in the `results` folder along with the
-gold standard. Each model's task1, task2 and task3 results are separated into
-different CSV files, with the predictions for each feature being named
-'<feature>\_pred'.
+gold standard. Each model's results are separated into different CSV files,
+with the predictions for each feature being named '<feature>\_pred'.
 
 The overall metrics for all models are shown in the `results/metrics` folder.
-The following metrics are considered for task 1:
-
-- F1, precision and recall for both negative and positive class.
-- F1, recall and accuracy, grouping by stereotypes that are implicit or
-  explicit, as well as contextual or not (StereoHoax only).
 
 These metrics can be recreated using the `create_metrics.py` script.
 
