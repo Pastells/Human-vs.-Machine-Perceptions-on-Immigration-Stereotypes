@@ -31,8 +31,6 @@ For example:
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-
-
 ## Programs and folder structure
 
 
@@ -46,15 +44,17 @@ For example:
 
 ### Utils
 
-- `config.py`: Contains feature names and constants for both corpora.
-- `fine_tuning.py` Utils for fine tuning notebook.
+- `config.py`: Contains feature names and constants.
+- `data_pred.py`: Does the data processing and predictions for the fine-tuned models.
+- `fine_tuning.py` Utils for the fine-tuning notebook.
 - `io.py`: Parses inputs and outputs.
+- `plots.py`: Plot utils.
 - `results.py`: Contains a class to store the results and functions to compute
   metrics.
-- `split.py` Utils for split notebooks.
+- `split.py`: Utils for split notebooks.
+- `trainers.py`: Different HF Trainers and main train function.
 
-- `scripts`: This folder contains bash scripts for
-  [reproducibility](#reproduce).
+- `scripts`: This folder contains bash scripts for [reproducibility](#reproduce).
 
 
 The following notebooks are included:

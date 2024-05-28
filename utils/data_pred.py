@@ -213,42 +213,6 @@ def preprocess(model_checkpoint, train_set, val_set, test_set, tokenizer=None, m
     return tok_train, tok_val, tok_test
 
 
-def add_noise_splits(train_set, val_set, test_set):
-    for _set in (train_set, val_set, test_set):
-        _set = add_noise_soft_labels(_set, "labels")
-    return train_set, val_set, test_set
-
-
-def add_noise_soft_labels(df, labels):
-    """Add gaussian noise to the original soft labels
-    The value of the noise is computed as follows:
-        1) Add a fourth annotator with either a negative or positive vote
-        2) Compute the difference the extra annotator makes on the softmax
-        3) Add gaussian noise with standard deviation = half the smallest difference"""
-    pos_neg = torch.tensor([[0, 3], [1, 2], [2, 1], [3, 0]], dtype=float)
-    soft = F.softmax(pos_neg, 1)[:, 0]
-
-    add_pos = pos_neg + torch.tensor([1, 0])
-    soft_pos = F.softmax(add_pos, 1)[:, 0]
-    noise_pos = soft_pos - soft - 1e-9
-
-    add_neg = pos_neg + torch.tensor([0, 1])
-    soft_neg = F.softmax(add_neg, 1)[:, 0]
-    noise_neg = soft_neg - soft + 1e-9
-
-    soft_vals = np.sort(df[labels].unique())
-    for i, val in enumerate(soft_vals):
-        mask = df[labels] == val
-        df.loc[mask, labels] = df.loc[mask, labels].apply(
-            lambda x: np.clip(
-                x + np.random.normal(0, min(noise_pos[i], -noise_neg[i]) / 2),
-                1e-12,
-                1 - 1e-12,
-            )
-        )
-    return df
-
-
 # ============================
 # PREDICTIONS
 # ============================

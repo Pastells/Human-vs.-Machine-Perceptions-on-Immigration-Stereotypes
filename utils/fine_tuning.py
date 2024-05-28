@@ -43,7 +43,7 @@ def number_contexts(x):
 
 def rename_move(data, colab=False, save_models=False):
     if colab:
-        folder = "experiments_stereohoax"
+        folder = "Human-vs.-Machine-Perceptions-on-Immigration-Stereotypes"
     else:
         folder = ""
 
@@ -71,7 +71,9 @@ def rename_move(data, colab=False, save_models=False):
         return
 
     # Move CSV files
-    csv_source_dir = os.path.join("experiments_stereohoax", "results", data)
+    csv_source_dir = os.path.join(
+        "Human-vs.-Machine-Perceptions-on-Immigration-Stereotypes", "results", data
+    )
     csv_destination_dir = os.path.join("drive", "MyDrive", "fine_tuning", "results", data)
 
     for filename in os.listdir(csv_source_dir):
@@ -110,9 +112,6 @@ def main_loop(SEEDS_DATA_SOFT, DATA_PARAMS, CONTEXTS, H_PARAMS, MODELS, GLOBALS,
                 set_deterministic(seed=seed)
                 DATA_PARAMS["context"] = context
                 _, _, train_set, val_set, test_set = get_data(**DATA_PARAMS)
-                # train_set, val_set, test_set = add_noise_splits(
-                #     train_set, val_set, test_set
-                # )
 
                 tok_train, tok_val, tok_test = preprocess(
                     model_checkpoint,
@@ -129,34 +128,9 @@ def main_loop(SEEDS_DATA_SOFT, DATA_PARAMS, CONTEXTS, H_PARAMS, MODELS, GLOBALS,
                 )
                 name = number_contexts(name)
                 print(name)
-                if (os.path.isfile(f"results/{data}/" + name + ".csv")) or (
-                    os.path.isfile(f"results/{data}/fine_tuning_512/" + name + ".csv")
-                    or os.path.isfile(
-                        f"/home/ppastells/projects/experiments_stereohoax/results/{data}/fine_tuning_512/"
-                        + name
-                        + ".csv"
-                    )
-                    or os.path.isfile(
-                        f"/home/ppastells/projects/experiments_stereohoax/results/{data}/"
-                        + name
-                        + ".csv"
-                    )
-                    or os.path.isfile(
-                        f"/home/ppastells/projects/experiments_stereohoax_cp/results/{data}/fine_tuning_512/"
-                        + name
-                        + ".csv"
-                    )
-                    or os.path.isfile(
-                        f"/home/ppastells/projects/experiments_stereohoax_cp/results/{data}/"
-                        + name
-                        + ".csv"
-                    )
-                ):
-                    print("\t already exists")
-                    continue
 
                 wandb.init(
-                    project="experiments_stereohoax",
+                    project="Human-vs.-Machine-Perceptions-on-Immigration-Stereotypes",
                     group=GLOBALS["experiment_name"],
                     config={
                         "name": name,
