@@ -57,9 +57,9 @@ For example:
 
 The following notebooks are included:
 
-- `notebooks/split_stereohoax.py` splits the StereoHoax corpus (see
+- `split_stereohoax.py` splits the StereoHoax corpus (see
   [split](#split)).
-- [`notebooks/fine_tuning_hard_and_soft.py`](https://colab.research.google.com/drive/1vKW90aaYxsjUS-njrR0s8ciyZ590D3nK?usp=sharing)
+- [`fine_tuning_hard_and_soft.py`](https://colab.research.google.com/drive/1vKW90aaYxsjUS-njrR0s8ciyZ590D3nK?usp=sharing)
   has the fine-tuning of the BERT models. It was originally run on free Google Colab with a T4 GPU.
   It was since ported to be used on a local machine.
 
