@@ -1,4 +1,4 @@
-# Human vs. Machine Perceptions on Immigration Stereotypes [Link to paper](https://aclanthology.org/2024.lrec-main.741/)
+# Human vs. Machine Perceptions on Immigration Stereotypes [LREC-Coling 2024] [Link to paper](https://aclanthology.org/2024.lrec-main.741/)
 
 This repository contains the code for classification models of racial stereotypes in a Spanish corpus (StereoHoax-ES), using both hard and soft labels.
 
